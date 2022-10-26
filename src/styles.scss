@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    font-family: 'Lato', serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.background-only {
+    background-color: #44001a;
+}
+
+.color-only {
+    color: white;
+}
+
+.color-and-background {
+    color: white; 
+    background-color: #44001a;
+}

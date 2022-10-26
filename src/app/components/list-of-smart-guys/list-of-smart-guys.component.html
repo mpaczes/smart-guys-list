@@ -1,0 +1,95 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-1">
+            <fa-icon [icon]="faUserGroup"></fa-icon>
+        </div>
+        <div class="col-lg-3">
+            <h3>List of smart guys</h3>
+        </div>
+        <div class="col-lg-2 offset-lg-6">
+            <button type="button" class="color-and-background" data-bs-toggle="modal" data-bs-target="#brainiacModal" (click)="addBrainiac()">
+                <fa-icon [icon]="faPlus"></fa-icon>Add brainiac</button>
+        </div>
+    </div>
+
+    <!-- table -->
+    <div class="row">
+      <div class="col-lg-12">
+          <table class="table table-striped">
+            <thead class="table-header">
+              <tr>
+                <th>Id</th>
+                <th>Avatar</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>E-mail</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of itemsArray">
+                <td>{{ item.id }}</td>
+                <td><img *ngIf="item.avatarUrl" src="{{ item.avatarUrl }}" alt="brainiac avatar" width="40px" height="40px"></td>
+                <td>{{ item.firstName }}</td>
+                <td>{{ item.lastName }}</td>
+                <td>{{ item.email }}</td>
+                <td>
+                  <button type="button" (click)="editBrainiac(item)" data-bs-toggle="modal" data-bs-target="#brainiacModal"><fa-icon [icon]="faPenToSquare"></fa-icon></button>
+                  <button type="button" (click)="deleteBrainiac(item)"><fa-icon [icon]="faTrashCan"></fa-icon></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+    <!-- errors for table -->
+    <div class="row">
+      <div class="col-lg-2">
+          Errors from backend : 
+      </div>
+      <div class="col-lg-7">
+        <textarea name="errorsForTable" #errorsForTableId cols="80" rows="6" [value]="errorsForTableText" readonly></textarea>
+      </div>
+      <div class="col-lg-3">
+        <button type="button" (click)="clearBeckendErrors()" class="color-and-background"><fa-icon [icon]="faRectangleXmark"></fa-icon> Clear backend errors</button>
+      </div>
+    </div>
+
+    <!-- modal -->
+    <div class="modal fade" id="brainiacModal" tabindex="-1" aria-labelledby="brainiacModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="brainiacModalLabel">Add new brainiac</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form #brainiacForm="ngForm">
+              <div class="form-group">
+                <label for="firstName">First name</label>
+                <input type="text" name="firstName" #firstName [(ngModel)]="firstNameInput" class="form-control" placeholder="Enter last name">
+              </div>
+
+              <div class="form-group">
+                <label for="lastName">Last name</label>
+                <input type="text" name="lastName" #lastName [(ngModel)]="lastNameInput" class="form-control" placeholder="Enter last name">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" #email [(ngModel)]="emailInput" class="form-control" placeholder="Enter last name">
+              </div>
+
+              <input type="hidden" name="id" [(ngModel)]="idInput">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #myModalClose>Close</button>
+            <button type="button" class="btn btn-primary" (click)="saveBrainiac(brainiacForm.value)">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
