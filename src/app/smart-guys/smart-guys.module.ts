@@ -5,6 +5,8 @@ import { ListOfSmartGuysComponent } from './components/list-of-smart-guys/list-o
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SmartGuysRoutingModule } from './smart-guys-routing.module';
+import { BrainiacService } from './services/brainiac.service';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    SmartGuysRoutingModule
   ],
-  exports: [
-    ListOfSmartGuysComponent
+  providers: [
+    BrainiacService
   ]
 })
 export class SmartGuysModule { }

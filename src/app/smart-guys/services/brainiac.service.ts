@@ -4,9 +4,7 @@ import { map, Observable } from 'rxjs';
 
 import { BrainiacInterface } from 'src/app/smart-guys/models/brainiac-interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BrainiacService {
 
   private readonly GET_ALL_BRAINIACS_URL = 'https://reqres.in/api/users?page=1';
