@@ -9,10 +9,10 @@ import { BrainiacInterface } from 'src/app/models/brainiac-interface';
 })
 export class BrainiacService {
 
-  private GET_ALL_BRAINIACS_URL = 'https://reqres.in/api/users?page=1';
-  private DELETE_BRAINIAC_URL = 'https://reqres.in/api/users/<BRAINIAC_ID>';
-  private ADD_BRAINIAC_URL = 'https://reqres.in/api/users';
-  private EDIT_BRAINIAC_URL = 'https://reqres.in/api/users/2';
+  private readonly GET_ALL_BRAINIACS_URL = 'https://reqres.in/api/users?page=1';
+  private readonly DELETE_BRAINIAC_URL = 'https://reqres.in/api/users/<BRAINIAC_ID>';
+  private readonly ADD_BRAINIAC_URL = 'https://reqres.in/api/users';
+  private readonly EDIT_BRAINIAC_URL = 'https://reqres.in/api/users/2';
 
   constructor(private httpClient: HttpClient) { }
 
