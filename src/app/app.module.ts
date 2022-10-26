@@ -1,29 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { ListOfSmartGuysComponent } from './components/list-of-smart-guys/list-of-smart-guys.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SmartGuysModule } from './smart-guys/smart-guys.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
-    ListOfSmartGuysComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule,
-    HttpClientModule,
-    FormsModule
+    SmartGuysModule,
+    FontAwesomeModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

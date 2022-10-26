@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-import { BrainiacInterface } from 'src/app/models/brainiac-interface';
+import { BrainiacInterface } from 'src/app/smart-guys/models/brainiac-interface';
 
 @Injectable({
   providedIn: 'root'

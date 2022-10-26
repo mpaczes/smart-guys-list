@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 
 import { IconDefinition, faUserGroup, faPlus, faPenToSquare, faTrashCan, faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
-import { BrainiacInterface } from 'src/app/models/brainiac-interface';
+import { BrainiacInterface } from 'src/app/smart-guys/models/brainiac-interface';
 
 import { BrainiacService } from '../../services/brainiac.service';
 
