@@ -11,3 +11,11 @@ a {
 a:hover, a:focus  {
     color: white;
 }
+
+.navbar-nav {
+    text-align: right;
+}
+
+.navbar .navbar-nav .nav-link {
+    padding-right: 1em;
+}
