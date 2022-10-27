@@ -1,12 +1,13 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-1">
+    <!-- icon with label -->
+    <div class="row row-margin-top">
+        <div class="offset-lg-2 col-lg-1">
             <fa-icon [icon]="faUserGroup"></fa-icon>
         </div>
         <div class="col-lg-3">
             <h3>List of smart guys</h3>
         </div>
-        <div class="col-lg-2 offset-lg-6">
+        <div class="col-lg-2 offset-lg-2">
             <button type="button" class="color-and-background" data-bs-toggle="modal" data-bs-target="#brainiacModal" (click)="addBrainiac()">
                 <fa-icon [icon]="faPlus"></fa-icon>Add brainiac</button>
         </div>
@@ -14,7 +15,7 @@
 
     <!-- table -->
     <div class="row">
-      <div class="col-lg-12">
+      <div class="offset-lg-2 col-lg-8">
           <table class="table table-striped">
             <thead class="table-header">
               <tr>
@@ -45,18 +46,22 @@
 
     <!-- errors for table -->
     <div class="row">
-      <div class="col-lg-2">
+      <div class="offset-lg-2 col-lg-4">
           Errors from backend : 
       </div>
-      <div class="col-lg-7">
-        <textarea name="errorsForTable" #errorsForTableId cols="80" rows="6" [value]="errorsForTableText" readonly></textarea>
+    </div>
+    <div class="row">
+      <div class="offset-lg-2 col-lg-7">
+        <textarea name="errorsForTable" #errorsForTableId cols="70" rows="6" [value]="errorsForTableText" readonly></textarea>
       </div>
-      <div class="col-lg-3">
+    </div>
+    <div class="row">
+      <div class="offset-lg-2 col-lg-4">
         <button type="button" (click)="clearBeckendErrors()" class="color-and-background"><fa-icon [icon]="faRectangleXmark"></fa-icon> Clear backend errors</button>
       </div>
     </div>
 
-    <!-- modal -->
+    <!-- add / edit brainiac modal -->
     <div class="modal fade" id="brainiacModal" tabindex="-1" aria-labelledby="brainiacModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -68,25 +73,25 @@
             <form #brainiacForm="ngForm">
               <div class="form-group">
                 <label for="firstName">First name</label>
-                <input type="text" name="firstName" #firstName [(ngModel)]="firstNameInput" class="form-control" placeholder="Enter last name">
+                <input type="text" name="firstName" #firstName [(ngModel)]="firstNameInput" class="form-control" placeholder="Enter last name" required>
               </div>
 
               <div class="form-group">
                 <label for="lastName">Last name</label>
-                <input type="text" name="lastName" #lastName [(ngModel)]="lastNameInput" class="form-control" placeholder="Enter last name">
+                <input type="text" name="lastName" #lastName [(ngModel)]="lastNameInput" class="form-control" placeholder="Enter last name" required>
               </div>
 
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" #email [(ngModel)]="emailInput" class="form-control" placeholder="Enter last name">
+                <input type="email" name="email" #email [(ngModel)]="emailInput" class="form-control" placeholder="Enter last name" required>
               </div>
 
               <input type="hidden" name="id" [(ngModel)]="idInput">
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #myModalClose>Close</button>
-            <button type="button" class="btn btn-primary" (click)="saveBrainiac(brainiacForm.value)">Save</button>
+            <button type="button" class="btn table-header" data-bs-dismiss="modal" #myModalClose>Close</button>
+            <button type="button" class="btn color-and-background" (click)="saveBrainiac(brainiacForm.value)">Save</button>
           </div>
         </div>
       </div>
