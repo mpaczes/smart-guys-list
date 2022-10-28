@@ -7,6 +7,7 @@ import { BrainiacService } from '../../services/brainiac.service';
 
 import { ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-list-of-smart-guys',
@@ -48,38 +49,9 @@ export class ListOfSmartGuysComponent implements OnInit {
   saveBrainiac(form: HTMLFormElement) {
     if (form['firstName'] && form['lastName'] && form['email']) {
       if (this.modalWorkStatus === 'ADD') {
-        this.brainiacService.addBrainiac({ firstName: form['firstName'], lastName: form['lastName'], email: form['email'] })
-          .subscribe(response => {
-            let maxIndex = -1;
-            this.itemsArray.forEach(element => {
-              let currentIndex: number | undefined = element.id;
-              if (currentIndex && currentIndex > maxIndex) {
-                maxIndex = currentIndex;
-              }
-            });
-            this.itemsArray.push({ id: (maxIndex + 1), firstName: form['firstName'], lastName: form['lastName'], email: form['email'], avatarUrl: '' });
-            
-            this.modalClose.nativeElement.click();
-          },
-          (error: HttpErrorResponse) => {
-            this.errorsForTableText = this.errorsForTableText + '\n' + error.message + ', ' + error.status + ', ' + error.statusText;
-          });
+        this.sendAddRequest(form);
       } else if (this.modalWorkStatus === 'EDIT') {
-        this.brainiacService.editBrainiac({ id: Number(form['id']), firstName: form['firstName'], lastName: form['lastName'], email: form['email'] })
-          .subscribe(response => {
-            this.itemsArray.forEach(element => {
-              if (element.id === Number(form['id'])) {
-                element.firstName = form['firstName'];
-                element.lastName = form['lastName'];
-                element.email = form['email'];
-              }
-            });
-
-            this.modalClose.nativeElement.click();
-          },
-          (error: HttpErrorResponse) => {
-            this.errorsForTableText = this.errorsForTableText + '\n' + error.message + ', ' + error.status + ', ' + error.statusText;
-          });
+        this.sendEditRequest(form);
       }
     }
   }
@@ -122,6 +94,49 @@ export class ListOfSmartGuysComponent implements OnInit {
 
   clearBeckendErrors() {
     this.errorsForTableText = '';
+  }
+
+  sendAddRequest(form: HTMLFormElement): void {
+    this.brainiacService.addBrainiac({ firstName: form['firstName'], lastName: form['lastName'], email: form['email'] })
+    .subscribe(response => {
+      let maxIndex = -1;
+      this.itemsArray.forEach(element => {
+        let currentIndex: number | undefined = element.id;
+        if (currentIndex && currentIndex > maxIndex) {
+          maxIndex = currentIndex;
+        }
+      });
+      this.itemsArray.push({ id: (maxIndex + 1), firstName: form['firstName'], lastName: form['lastName'], email: form['email'], avatarUrl: '' });
+      
+      this.modalClose.nativeElement.click();
+    },
+    (error: HttpErrorResponse) => {
+      this.errorsForTableText = this.errorsForTableText + '\n' + error.message + ', ' + error.status + ', ' + error.statusText;
+    });
+  }
+
+  sendEditRequest(form: HTMLFormElement): void {
+    this.brainiacService.editBrainiac({ id: Number(form['id']), firstName: form['firstName'], lastName: form['lastName'], email: form['email'] })
+    .subscribe(response => {
+      this.itemsArray.forEach(element => {
+        if (element.id === Number(form['id'])) {
+          element.firstName = form['firstName'];
+          element.lastName = form['lastName'];
+          element.email = form['email'];
+        }
+      });
+
+      this.modalClose.nativeElement.click();
+    },
+    (error: HttpErrorResponse) => {
+      this.errorsForTableText = this.errorsForTableText + '\n' + error.message + ', ' + error.status + ', ' + error.statusText;
+    });
+  }
+
+  closeModalAddEdit(firstNameModel: NgModel, lastNameModel: NgModel, emailModel: NgModel) {
+    firstNameModel.reset('');
+    lastNameModel.reset('');
+    emailModel.reset('');
   }
 
 }
