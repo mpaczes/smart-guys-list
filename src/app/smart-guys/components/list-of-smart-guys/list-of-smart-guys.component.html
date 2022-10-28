@@ -28,17 +28,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of itemsArray">
-                <td>{{ item.id }}</td>
-                <td><img *ngIf="item.avatarUrl" src="{{ item.avatarUrl }}" alt="brainiac avatar" width="40px" height="40px"></td>
-                <td>{{ item.firstName }}</td>
-                <td>{{ item.lastName }}</td>
-                <td>{{ item.email }}</td>
-                <td>
-                  <button type="button" (click)="editBrainiac(item)" data-bs-toggle="modal" data-bs-target="#brainiacModal"><fa-icon [icon]="faPenToSquare"></fa-icon></button>
-                  <button type="button" (click)="deleteBrainiac(item)"><fa-icon [icon]="faTrashCan"></fa-icon></button>
-                </td>
-              </tr>
+              <tr *ngFor="let item of itemsArray" app-smart-guy-row [brainiac]="item" (brainiacRowEventEmitter)="subscribeToBrainiacRowEvent($event)"></tr>
             </tbody>
           </table>
       </div>

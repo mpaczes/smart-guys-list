@@ -8,6 +8,7 @@ import { BrainiacService } from '../../services/brainiac.service';
 import { ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgModel } from '@angular/forms';
+import { BrainiacEvenetEmitterInterface } from '../../models/brainiac-evenet-emitter-interface';
 
 @Component({
   selector: 'app-list-of-smart-guys',
@@ -137,6 +138,14 @@ export class ListOfSmartGuysComponent implements OnInit {
     firstNameModel.reset('');
     lastNameModel.reset('');
     emailModel.reset('');
+  }
+
+  subscribeToBrainiacRowEvent(brainiacRowEvent: BrainiacEvenetEmitterInterface) {
+    if (brainiacRowEvent.eventSource === 'EDIT_BRANIAC') {
+      this.editBrainiac(brainiacRowEvent.brainiac);
+    } else if (brainiacRowEvent.eventSource === 'DELETE_BRANIAC') {
+      this.deleteBrainiac(brainiacRowEvent.brainiac);
+    }
   }
 
 }

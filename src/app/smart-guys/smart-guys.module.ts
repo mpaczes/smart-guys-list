@@ -7,10 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SmartGuysRoutingModule } from './smart-guys-routing.module';
 import { BrainiacService } from './services/brainiac.service';
+import { SmartGuyRowComponent } from './components/list-of-smart-guys/smart-guy-row/smart-guy-row.component';
 
 @NgModule({
   declarations: [
-    ListOfSmartGuysComponent
+    ListOfSmartGuysComponent,
+    SmartGuyRowComponent
   ],
   imports: [
     CommonModule,
